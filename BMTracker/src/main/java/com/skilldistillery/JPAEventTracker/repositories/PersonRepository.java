@@ -6,4 +6,5 @@ import com.skilldistillery.JPAEventTracker.entities.Person;
 
 public interface PersonRepository extends JpaRepository<Person, Integer> {
 
+		public Person queryById(int id);
 }

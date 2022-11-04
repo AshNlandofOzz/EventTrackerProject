@@ -47,4 +47,6 @@ public class BMController {
 	public BM updateBM(@PathVariable int id,@RequestBody BM bm) {
 		return bmServ.update(id, bm);
 	}
+	
+	
 }

@@ -22,26 +22,36 @@ public class PersonServiceImpl implements PersonService {
 
 	@Override
 	public Person showPerson(int personId) {
-		// TODO Auto-generated method stub
-		return null;
+		return personRepo.queryById(personId);
 	}
 
 	@Override
 	public Person create(Person person) {
-		// TODO Auto-generated method stub
-		return null;
+		personRepo.saveAndFlush(person);
+		return person;
 	}
 
 	@Override
 	public Person update(int personId, Person person) {
-		// TODO Auto-generated method stub
-		return null;
+		Person updated = null;
+		updated = personRepo.queryById(personId);
+		if(updated!=null) {
+			updated.setDateOfBirth(person.getDateOfBirth());
+			updated.setAllergies(person.getAllergies());
+			updated.setMedHistory(person.getMedHistory());
+			updated.setSex(person.getSex());
+			return personRepo.saveAndFlush(updated);
+		}
+		return updated;
 	}
 
 	@Override
-	public boolean delete(int bmId) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean delete(int id) {
+		Person person = personRepo.queryById(id);
+		if(person != null ) {
+			personRepo.delete(person);
+		}
+		return !personRepo.existsById(id);
 	}
 
 	@Override
