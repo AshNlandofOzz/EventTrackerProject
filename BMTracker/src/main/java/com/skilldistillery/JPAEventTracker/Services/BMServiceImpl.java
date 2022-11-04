@@ -26,20 +26,30 @@ public class BMServiceImpl implements BMService {
 
 	@Override
 	public BM create(BM bm) {
-		// TODO Auto-generated method stub
-		return null;
+		bmRepo.saveAndFlush(bm);
+		return bm;
 	}
 
 	@Override
 	public BM update(int bmId, BM bm) {
-		// TODO Auto-generated method stub
-		return null;
+		BM updated = null;
+		updated = bmRepo.queryById(bmId);
+		if(updated!= null) {
+			updated.setColor(bm.getColor());
+			updated.setConsistency(bm.getConsistency());
+			updated.setPerson(bm.getPerson());
+			return bmRepo.saveAndFlush(updated);
+		}
+		return updated;
 	}
 
 	@Override
 	public boolean delete(int bmId) {
-		// TODO Auto-generated method stub
-		return false;
+		BM bm = bmRepo.queryById(bmId);
+		if(bm != null) {
+			bmRepo.delete(bm);
+		}
+		return !bmRepo.existsById(bmId);
 	}
 
 }
