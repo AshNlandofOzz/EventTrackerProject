@@ -16,6 +16,21 @@ CREATE SCHEMA IF NOT EXISTS `BMtrackerdb` DEFAULT CHARACTER SET utf8 ;
 USE `BMtrackerdb` ;
 
 -- -----------------------------------------------------
+-- Table `person`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `person` ;
+
+CREATE TABLE IF NOT EXISTS `person` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `date_of_birth` VARCHAR(500) NULL,
+  `sex` VARCHAR(500) NULL,
+  `allergies` VARCHAR(500) NULL,
+  `med_history` VARCHAR(500) NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
 -- Table `bowel_movement`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `bowel_movement` ;
@@ -24,6 +39,25 @@ CREATE TABLE IF NOT EXISTS `bowel_movement` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `color` VARCHAR(500) NULL,
   `consistency` VARCHAR(500) NULL,
+  `person_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_bowel_movement_person_idx` (`person_id` ASC),
+  CONSTRAINT `fk_bowel_movement_person`
+    FOREIGN KEY (`person_id`)
+    REFERENCES `person` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `health_resources`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `health_resources` ;
+
+CREATE TABLE IF NOT EXISTS `health_resources` (
+  `id` INT NOT NULL,
+  `webpage_url` VARCHAR(500) NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -39,11 +73,32 @@ SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 -- -----------------------------------------------------
+-- Data for table `person`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `BMtrackerdb`;
+INSERT INTO `person` (`id`, `date_of_birth`, `sex`, `allergies`, `med_history`) VALUES (1, '03-05-2018', 'female', 'none', 'none');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
 -- Data for table `bowel_movement`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `BMtrackerdb`;
-INSERT INTO `bowel_movement` (`id`, `color`, `consistency`) VALUES (1, 'dark brown', 'firm');
+INSERT INTO `bowel_movement` (`id`, `color`, `consistency`, `person_id`) VALUES (1, 'dark brown', 'firm', 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `health_resources`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `BMtrackerdb`;
+INSERT INTO `health_resources` (`id`, `webpage_url`) VALUES (1, 'https://www.mayoclinic.org/diseases-conditions/constipation-in-children/symptoms-causes/syc-20354242');
+INSERT INTO `health_resources` (`id`, `webpage_url`) VALUES (2, 'https://www.webmd.com/digestive-disorders/celiac-disease/celiac-disease-symptoms');
 
 COMMIT;
 
