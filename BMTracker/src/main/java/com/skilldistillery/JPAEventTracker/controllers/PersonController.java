@@ -2,6 +2,7 @@ package com.skilldistillery.JPAEventTracker.controllers;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,14 +36,20 @@ public class PersonController {
 	}
 
 	@PostMapping("persons/person")
-	public Person createPerson(@RequestBody Person person, HttpServletResponse resp) {
+	public Person createPerson(@RequestBody Person person, HttpServletResponse resp, HttpServletRequest request) {
 		Person newPerson = null;
 		try {
 		newPerson = personServ.create(person);
 		resp.setStatus(201);
+		StringBuffer urlSb = request.getRequestURL();
+		urlSb.append("/").append(person.getId());
+		String url = urlSb.toString();
+		resp.setHeader("Location", url);
 		}
 		catch(Exception e) {
+			e.printStackTrace();
 			resp.setStatus(400);
+			newPerson = null;
 		}
 		return newPerson;
 	}
@@ -66,10 +73,14 @@ public class PersonController {
 		Person updated = null;
 		try {
 		updated = personServ.update(id, person);
+		if(updated == null) {
+			resp.setStatus(404);
+		}
 		}
 		catch(Exception e) {
 			e.printStackTrace();
 			resp.setStatus(400);
+			updated = null;
 		}
 		return updated;
 	}

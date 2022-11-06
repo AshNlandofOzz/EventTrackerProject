@@ -2,6 +2,7 @@ package com.skilldistillery.JPAEventTracker.controllers;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,21 +36,38 @@ public class BMController {
 	}
 	
 	@PostMapping("bms/bm")
-	public BM createBM(@RequestBody BM bm, HttpServletResponse resp) {
+	public BM createBM(HttpServletRequest request, HttpServletResponse resp, @RequestBody BM bm) {
 		BM newBm = null;
 		try {
 		newBm = bmServ.create(bm);
+		resp.setStatus(201);
+		StringBuffer urlSb = request.getRequestURL();
+		urlSb.append("/").append(bm.getId());
+		String url = urlSb.toString();
+		resp.setHeader("Location", url);
 		}
 		catch(Exception e) {
+			e.printStackTrace();
 			resp.setStatus(400);
+			newBm = null;
 		}
 		return newBm;
 	}
 	
 	@DeleteMapping("bms/{id}")
-	public boolean deleteBM(@PathVariable int id) {
-		boolean deleted = bmServ.delete(id);
-		return deleted;
+	public void deleteBM(@PathVariable int id, HttpServletResponse resp) {
+		try {
+			if(bmServ.delete(id)) {
+				resp.setStatus(204);
+			}
+			else {
+				resp.setStatus(404);
+			}
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			resp.setStatus(400);
+		}
 	}
 
 	@PutMapping("bms/{id}")
@@ -57,10 +75,14 @@ public class BMController {
 		BM updated = null;
 		try {
 		updated = bmServ.update(id, bm);
+		if(updated == null) {
+			resp.setStatus(404);
+		}
 		}
 		catch(Exception e) {
 			e.printStackTrace();
 			resp.setStatus(400);
+			updated = null;
 		}
 		return updated;
 	}
