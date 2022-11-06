@@ -2,6 +2,8 @@ package com.skilldistillery.JPAEventTracker.controllers;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,8 +35,15 @@ public class BMController {
 	}
 	
 	@PostMapping("bms/bm")
-	public BM createBM(@RequestBody BM bm) {
-		return bmServ.create(bm);
+	public BM createBM(@RequestBody BM bm, HttpServletResponse resp) {
+		BM newBm = null;
+		try {
+		newBm = bmServ.create(bm);
+		}
+		catch(Exception e) {
+			resp.setStatus(400);
+		}
+		return newBm;
 	}
 	
 	@DeleteMapping("bms/{id}")
@@ -44,8 +53,16 @@ public class BMController {
 	}
 
 	@PutMapping("bms/{id}")
-	public BM updateBM(@PathVariable int id,@RequestBody BM bm) {
-		return bmServ.update(id, bm);
+	public BM updateBM(@PathVariable int id,@RequestBody BM bm, HttpServletResponse resp) {
+		BM updated = null;
+		try {
+		updated = bmServ.update(id, bm);
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			resp.setStatus(400);
+		}
+		return updated;
 	}
 	
 	
