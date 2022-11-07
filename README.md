@@ -1,10 +1,6 @@
 # EventTrackerProject
 
-Yes poo. No one wants to talk about it but everyone does it. The reason for such an unappealing app is simple. At this stage in life, poo has ruled the world for about 5 years. Having small kids does that. The first trip to the doctor because you suspect your child hasn't been able to go is an eyeopener. Looking at my spouse asking "Well, I haven't changed a poo diaper in several days. Have you changed one?" and them look back at you and say "I thought you did." is an awful experience. Such a simple thing that would help the doctor and yet, no answer to be found. Enter BMTracker.
-
-I find that the older I get the less I get away from this. I am at the edge of also being responsible for the care of elderly relatives and I find that when grandpa goes to the ER for stomach pain, suddenly this applies to adults. It may be gross, but it seems entirely necessary.
-
-This application could also be used by daycares and healthcare facilities.
+Yes poo. No one wants to talk about it but everyone does it. The reason for such an unappealing app is simple. Waste and human waste issues are inescapable. This app is great for parents with young children, parents potty training, daycares, and medical facilities. The user can keep track if the person in the system had a movement and they can also log the details. Minimum required information pertains to just whether they went or not. Trying to potty train your kid or identify an intestinal issue in someone, enter BMTracker.
 
 # Techonologies Used
 
@@ -24,3 +20,6 @@ This application has been designed to this point using STS workspace and also RE
 | Create   | POST      | `/api/persons/person`| JSON for new bm   | JSON of created cave |
 | Update   | PUT       | `/api/persons/{id}`  | JSON to update bm | JSON of updated cave |
 | Delete   | DELETE    | `/api/persons/{id}`  |                   |                      |
+
+# Stages
+This stage of the project is backend development with a front end application coming in the next few weeks.

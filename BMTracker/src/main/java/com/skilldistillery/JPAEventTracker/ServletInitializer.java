@@ -1,5 +1,6 @@
 package com.skilldistillery.JPAEventTracker;
 
+import org.springframework.boot.SpringApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
@@ -9,5 +10,8 @@ public class ServletInitializer extends SpringBootServletInitializer {
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
 		return application.sources(BmTrackerApplication.class);
 	}
+	  public static void main(String[] args) {
+		    SpringApplication.run(BmTrackerApplication.class, args);
+		  }
 
 }

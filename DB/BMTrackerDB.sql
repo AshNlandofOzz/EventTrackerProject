@@ -78,6 +78,9 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 START TRANSACTION;
 USE `BMtrackerdb`;
 INSERT INTO `person` (`id`, `date_of_birth`, `sex`, `allergies`, `med_history`) VALUES (1, '03-05-2018', 'female', 'none', 'none');
+INSERT INTO `person` (`id`, `date_of_birth`, `sex`, `allergies`, `med_history`) VALUES (2, '10-10-2017', 'male', 'peanuts', 'none');
+INSERT INTO `person` (`id`, `date_of_birth`, `sex`, `allergies`, `med_history`) VALUES (3, '05-05-1945', 'female', 'none', 'see medical record. important- siliac disease.');
+INSERT INTO `person` (`id`, `date_of_birth`, `sex`, `allergies`, `med_history`) VALUES (4, '08-22-2020', 'male', 'nuts', 'lactose intolerance');
 
 COMMIT;
 
@@ -88,6 +91,13 @@ COMMIT;
 START TRANSACTION;
 USE `BMtrackerdb`;
 INSERT INTO `bowel_movement` (`id`, `color`, `consistency`, `person_id`) VALUES (1, 'dark brown', 'firm', 1);
+INSERT INTO `bowel_movement` (`id`, `color`, `consistency`, `person_id`) VALUES (2, 'healthy', NULL, 1);
+INSERT INTO `bowel_movement` (`id`, `color`, `consistency`, `person_id`) VALUES (3, 'healthy', NULL, 1);
+INSERT INTO `bowel_movement` (`id`, `color`, `consistency`, `person_id`) VALUES (4, 'light brown', 'runny', 1);
+INSERT INTO `bowel_movement` (`id`, `color`, `consistency`, `person_id`) VALUES (5, NULL, NULL, 2);
+INSERT INTO `bowel_movement` (`id`, `color`, `consistency`, `person_id`) VALUES (6, NULL, NULL, 2);
+INSERT INTO `bowel_movement` (`id`, `color`, `consistency`, `person_id`) VALUES (7, NULL, NULL, 3);
+INSERT INTO `bowel_movement` (`id`, `color`, `consistency`, `person_id`) VALUES (8, NULL, NULL, 3);
 
 COMMIT;
 
