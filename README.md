@@ -14,12 +14,12 @@ This application has been designed to this point using STS workspace and also RE
 | Read     | GET       | `/api/persons`       |                   | List of all people |
 | Read     | GET       | `/api/bms/{id}`      |                   | Representation of one bm |
 | Read     | GET       | `/api/persons/{id}`  |                   | Representation of one person |
-| Create   | POST      | `/api/bms/bm`        | JSON for new bm   | JSON of created cave
-| Update   | PUT       | `/api/bms/{id}`      | JSON to update bm | JSON of updated cave |
+| Create   | POST      | `/api/bms/bm`        | JSON for new bm   | JSON of created bm
+| Update   | PUT       | `/api/bms/{id}`      | JSON to update bm | JSON of updated bm |
 | Delete   | DELETE    | `/api/bms/{id}`      |                   |                      |
-| Create   | POST      | `/api/persons/person`| JSON for new bm   | JSON of created cave |
-| Update   | PUT       | `/api/persons/{id}`  | JSON to update bm | JSON of updated cave |
+| Create   | POST      | `/api/persons/person`| JSON for new bm   | JSON of created person |
+| Update   | PUT       | `/api/persons/{id}`  | JSON to update bm | JSON of updated person |
 | Delete   | DELETE    | `/api/persons/{id}`  |                   |                      |
-
+| Create   | POST      | `/api/persons/{id}/bms`| JSON for new bm |  JSON of created bm  |
 # Stages
 This stage of the project is backend development with a front end application coming in the next few weeks.

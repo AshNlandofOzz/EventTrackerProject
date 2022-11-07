@@ -14,4 +14,7 @@ public interface BMService {
 	BM update(int bmId, BM bm);
 	
 	boolean delete(int bmId);
+	
+	BM createBmOnPerson(int personId, BM bm);
+	
 }

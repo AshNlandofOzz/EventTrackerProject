@@ -54,6 +54,11 @@ public class BMController {
 		return newBm;
 	}
 	
+	@PostMapping("persons/{id}/bms") 
+	public BM createBmByPerson(@PathVariable int id, @RequestBody BM bm) {
+		return bmServ.createBmOnPerson(id, bm);
+	}
+	
 	@DeleteMapping("bms/{id}")
 	public void deleteBM(@PathVariable int id, HttpServletResponse resp) {
 		try {

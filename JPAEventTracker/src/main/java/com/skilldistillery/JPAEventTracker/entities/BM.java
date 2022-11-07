@@ -26,6 +26,8 @@ public class BM {
 	@JoinColumn(name="person_id")
 	private Person person;
 	
+	private String date;
+	
 	public int getId() {
 		return id;
 	}
@@ -79,9 +81,20 @@ public class BM {
 		
 	}
 
+
+
 	@Override
 	public String toString() {
-		return "BM [id=" + id + ", color=" + color + ", consistency=" + consistency + ", person=" + person + "]";
+		return "BM [id=" + id + ", color=" + color + ", consistency=" + consistency + ", person=" + person + ", date="
+				+ date + "]";
+	}
+
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
 	}
 
 

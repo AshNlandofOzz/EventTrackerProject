@@ -45,6 +45,7 @@ class BMTest {
 	void test_Category_entity_mapping() {
 		assertNotNull(bm);
 		assertEquals("dark brown", bm.getColor());
+		assertEquals("10-21-2022", bm.getDate());
 	}
 
 }

@@ -6,13 +6,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.JPAEventTracker.entities.BM;
+import com.skilldistillery.JPAEventTracker.entities.Person;
 import com.skilldistillery.JPAEventTracker.repositories.BMRepository;
+import com.skilldistillery.JPAEventTracker.repositories.PersonRepository;
 
 @Service
 public class BMServiceImpl implements BMService {
 	
 	@Autowired
 	private BMRepository bmRepo;
+	
+	@Autowired 
+	private PersonRepository personRepo;
 
 	@Override
 	public List<BM> listAllBM() {
@@ -51,5 +56,17 @@ public class BMServiceImpl implements BMService {
 		}
 		return !bmRepo.existsById(bmId);
 	}
+
+	@Override
+	public BM createBmOnPerson(int personId, BM bm) {
+		Person p = personRepo.queryById(personId);
+		if (p == null) {
+			return null;
+		}
+		bm.setPerson(p);
+		bmRepo.saveAndFlush(bm);
+		return bm;
+	}
+			
 
 }
