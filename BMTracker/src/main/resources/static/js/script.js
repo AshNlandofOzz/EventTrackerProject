@@ -18,13 +18,36 @@ function init() {
 		};
 		addBm(bm);
 	})
+		document.addPerson.addPersonButton.addEventListener('click', function(e) {
+		e.preventDefault();
+
+		let person = {
+			dateOfBirth: document.addPerson.dateOfBirth.value,
+			sex: document.addPerson.sex.value,
+			allergies: document.addPerson.allergies.value,
+			med_History: document.addPerson.medHistory.value
+
+		};
+		addperson(person);
+	})
+	
 	document.deleteBm.deleteBtn.addEventListener('click', function(e) {
 		e.preventDefault();
 		deleteBm(document.deleteBm.bmId.value);
 	})
+	
+		document.deletePerson.deletePersonBtn.addEventListener('click', function(e) {
+		e.preventDefault();
+		deletePerson(document.deletePerson.personId.value);
+	})
+	
 	document.updateBm.update.addEventListener('click', function(e) {
 		e.preventDefault();
 		updateBm(document.updateBm.bmId.value);
+	})
+		document.updatePerson.updatePersonBtn.addEventListener('click', function(e) {
+		e.preventDefault();
+		updatePerson(document.updatePerson.personId.value);
 	})
 }
 
@@ -139,9 +162,45 @@ function addBm(bm) {
 	xhr.send(bmJson);
 }
 
+function addperson(person) {
+	let xhr = new XMLHttpRequest();
+	xhr.open('POST', `/api/persons/person`);
+
+	xhr.setRequestHeader("Content-type", "application/json");
+
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState === 4) {
+			if (xhr.status === 200 || xhr.status === 201) {
+				let person = JSON.parse(xhr.responseText);
+				getPersons();
+			} else {
+				console.error("Failed to create Person record");
+				console.error(xhr.status + " : " + xhr.responseText);
+			}
+		}
+	}
+	let personJson = JSON.stringify(person);
+	xhr.send(personJson);
+}
+
 function deleteBm(bmId) {
 	let xhr = new XMLHttpRequest();
 	xhr.open('DELETE', '/api/bms/' + bmId);
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState === 4) {
+			if (xhr.status === 204) {
+
+				getBM();
+				getPersons();
+			}
+		}
+	}
+	xhr.send();
+};
+
+function deletePerson(personId) {
+	let xhr = new XMLHttpRequest();
+	xhr.open('DELETE', '/api/persons/' + personId);
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState === 4) {
 			if (xhr.status === 204) {
@@ -213,6 +272,87 @@ function updateBm(bmId) {
 
 }
 
+function updatePerson(personId) {
+	let xhr = new XMLHttpRequest();
+	xhr.open('GET', '/api/persons/' + personId);
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState === 4) {
+			if (xhr.status === 200) {
+				let personJson = xhr.responseText;
+				console.log(personJson);  //TESTING 
+				let person = JSON.parse(personJson);
+				
+				let PersonData = document.getElementById('PersonData');
+				let form = document.createElement('form');
+				form.name = 'updatePersonform';
+				PersonData.appendChild(form);
+				let dateOfBirth = document.createElement('input');
+				dateOfBirth.name = 'dateOfBirth';
+				dateOfBirth.type = 'text';
+				dateOfBirth.value = person.dateOfBirth;
+				form.appendChild(dateOfBirth);
+				let sex = document.createElement('input');
+				sex.name = 'sex';
+				sex.type = 'text';
+				sex.value = person.sex;
+				form.appendChild(sex);
+				let allergies = document.createElement('input');
+				allergies.name = 'allergies';
+				allergies.type = 'text';
+				allergies.value = person.allergies;
+				form.appendChild(allergies);
+				let medHistory = document.createElement('input');
+				medHistory.name = 'medHistory';
+				medHistory.type = 'text';
+				medHistory.value = person.medHistory;
+				form.appendChild(medHistory);
+
+				let submit = document.createElement('input');
+				submit.name = 'submit';
+				submit.type = 'submit';
+				submit.value = 'Update Record';
+				submit.addEventListener('click', function(e) {
+					e.preventDefault();
+					let newPerson = {
+						id: personId,
+						dateOfBirth: dateOfBirth.value,
+						sex: sex.value,
+						allergies: allergies.value,
+						medHistory: medHistory.value
+					}
+					updatePersonSubmit(newPerson);
+				})
+				form.appendChild(submit);
+			}
+		}
+	}
+	xhr.send();
+
+}
+
+function updatePersonSubmit(person) {
+	let xhr = new XMLHttpRequest();
+	xhr.open('PUT', `/api/persons/` + person.id);
+
+	xhr.setRequestHeader("Content-type", "application/json");
+
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState === 4) {
+			if (xhr.status === 200 || xhr.status === 201) {
+				let person = JSON.parse(xhr.responseText);
+				let PersonData = document.getElementById('PersonData');
+				PersonData.textContent = '';
+				getPersons();
+			} else {
+				console.error("Failed to create Person Record");
+				console.error(xhr.status + " : " + xhr.responseText);
+			}
+		}
+	}
+	let personJson = JSON.stringify(person);
+	xhr.send(personJson);
+
+}
 
 function updateBmSubmit(bm) {
 	let xhr = new XMLHttpRequest();
