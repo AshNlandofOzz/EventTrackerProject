@@ -8,7 +8,6 @@ function init() {
 	getPersons();
 	document.addBm.addBmButton.addEventListener('click', function(e) {
 		e.preventDefault();
-
 		let bm = {
 			color: document.addBm.color.value,
 			consistency: document.addBm.consistency.value,
@@ -53,7 +52,7 @@ function init() {
 
 function getBM() {
 	let xhr = new XMLHttpRequest();
-	xhr.open('GET', '/api/bms');
+	xhr.open('GET', 'api/bms');
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState === 4) {
 			if (xhr.status === 200) {
@@ -69,7 +68,7 @@ function getBM() {
 
 function getPersons() {
 	let xhr = new XMLHttpRequest();
-	xhr.open('GET', '/api/persons');
+	xhr.open('GET', 'api/persons');
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState === 4) {
 			if (xhr.status === 200) {
@@ -81,8 +80,8 @@ function getPersons() {
 	};
 	xhr.send();
 }
-function displayBMs(bms) {
 
+function displayBMs(bms) {
 	let tbody = document.getElementById('bmTableBody');
 	tbody.textContent = '';
 	if (bms && Array.isArray(bms) && bms.length > 0) {
@@ -121,9 +120,6 @@ function displayBMs(bms) {
 
 }
 
-function displayBMList() {
-	//TODO: add BMs to DOM
-}
 
 function displayPersons(persons) {
 	let tbody = document.getElementById('personsTableBody');
@@ -153,7 +149,7 @@ function displayPersons(persons) {
 
 function addBm(bm) {
 	let xhr = new XMLHttpRequest();
-	xhr.open('POST', `/api/bms/bm`);
+	xhr.open('POST', `api/bms/bm`);
 
 	xhr.setRequestHeader("Content-type", "application/json");
 
@@ -174,7 +170,7 @@ function addBm(bm) {
 
 function addperson(person) {
 	let xhr = new XMLHttpRequest();
-	xhr.open('POST', `/api/persons/person`);
+	xhr.open('POST', `api/persons/person`);
 
 	xhr.setRequestHeader("Content-type", "application/json");
 
@@ -195,7 +191,7 @@ function addperson(person) {
 
 function deleteBm(bmId) {
 	let xhr = new XMLHttpRequest();
-	xhr.open('DELETE', '/api/bms/' + bmId);
+	xhr.open('DELETE', 'api/bms/' + bmId);
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState === 4) {
 			if (xhr.status === 204) {
@@ -210,7 +206,7 @@ function deleteBm(bmId) {
 
 function deletePerson(personId) {
 	let xhr = new XMLHttpRequest();
-	xhr.open('DELETE', '/api/persons/' + personId);
+	xhr.open('DELETE', 'api/persons/' + personId);
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState === 4) {
 			if (xhr.status === 204) {
@@ -284,7 +280,7 @@ function updateBm(bmId) {
 
 function updatePerson(personId) {
 	let xhr = new XMLHttpRequest();
-	xhr.open('GET', '/api/persons/' + personId);
+	xhr.open('GET', 'api/persons/' + personId);
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState === 4) {
 			if (xhr.status === 200) {
@@ -342,7 +338,7 @@ function updatePerson(personId) {
 
 function updatePersonSubmit(person) {
 	let xhr = new XMLHttpRequest();
-	xhr.open('PUT', `/api/persons/` + person.id);
+	xhr.open('PUT', `api/persons/` + person.id);
 
 	xhr.setRequestHeader("Content-type", "application/json");
 
@@ -366,7 +362,7 @@ function updatePersonSubmit(person) {
 
 function updateBmSubmit(bm) {
 	let xhr = new XMLHttpRequest();
-	xhr.open('PUT', `/api/bms/` + bm.id);
+	xhr.open('PUT', `api/bms/` + bm.id);
 
 	xhr.setRequestHeader("Content-type", "application/json");
 

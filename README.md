@@ -21,5 +21,9 @@ This application has been designed to this point using STS workspace and also RE
 | Update   | PUT       | `/api/persons/{id}`  | JSON to update bm | JSON of updated person |
 | Delete   | DELETE    | `/api/persons/{id}`  |                   |                      |
 | Create   | POST      | `/api/persons/{id}/bms`| JSON for new bm |  JSON of created bm  |
-# Stages
-This stage of the project is backend development with a front end application coming in the next few weeks.
+
+
+# Update
+Front end of this project has been launched to my EC2 at:
+http://18.117.31.23:8080/BMTracker/,
+though I am having issues with the EC2. It is not displaying my BM table with the aggregate data. It also appears all of my update forms have stoped working. I believe something with the table has cascaded into the code, but I cannot find the problem. 
