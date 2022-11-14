@@ -104,15 +104,17 @@ function displayBMs(bms) {
 			td = document.createElement('td');
 			td.textContent = bm.person.id;
 			tr.appendChild(td);
-			
+
 		}
 			let totalBM = 0;
 			for(bm of bms) {
 				totalBM ++;		
 			}
-			let totalBMinRecord = document.createElement('tr');
-			totalBMinRecord.textContent = "Total BMs in Record: " + totalBM; 
-			tbody.appendChild(totalBMinRecord);
+						tr = document.createElement('tr');
+			tbody.appendChild(tr);
+			td = document.createElement('td');
+			td.textContent = "Total BMs in Record: " + totalBM; 
+			tr.appendChild(td);
 	}
 	//TODO XHR to get all the current data
 

@@ -4,102 +4,177 @@
 <meta charset="UTF-8">
 <title>BM Tracker</title>
 <script type="text/javascript" src="js/script.js">
+	
 </script>
 
 <!-- CSS only -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-<link rel="stylesheet" href="css/main.css">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+	crossorigin="anonymous">
+<!-- <link rel="stylesheet" href="css/main.css"> -->
 </head>
-<body>
+<body
+	style="padding: 40px; background: linear-gradient(.50turn, rgb(25, 10, 84), maroon);">
 
-<h1>Welcome to BM Tracker</h1>
-
- 
-
-      <table class="table table-dark table-striped">
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Date</th>
-      <th>Color</th>
-      <th>Consistency</th>
-      <th>ID of Person</th>
-    </tr>
-  </thead>
-  <tbody id="bmTableBody">
-
-  </tbody>
-</table> <br>
+	<h1 style="text-align: center; color: white">Welcome to BM Tracker</h1>
 
 
-      <table class="table table-dark table-striped">
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Date Of Birth</th>
-      <th>Sex</th>
-      <th>Allergies</th>
-      <th>Medical History</th>
-    </tr>
-  </thead>
-  <tbody id="personsTableBody">
 
-  </tbody>
-</table> <br>
+	<table class="table table-dark table-striped">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Date</th>
+				<th>Color</th>
+				<th>Consistency</th>
+				<th>ID of Person</th>
+			</tr>
+		</thead>
+		<tbody id="bmTableBody">
 
- <form name="addBm">
-   <label for='color'>Color</label>
-   <input name="color" type="text"><br>
-   <label for='consistency'>Consistency</label>
-   <input name="consistency" type="text"><br>
-   <label for='date'>Date (This is required)</label>
-   <input name="date" type="text"><br>
- <label for='personId'>ID of Person (This is required)</label>
-   <input name="personId" type="text"><br> 
-  
-    <button name="addBmButton">Add BM</button>
-  </form> <br>
-  
-   <form name="addPerson">
-   <label for='dateOfBirth'>dateOfBirth</label>
-   <input name="dateOfBirth" type="text"><br>
-   <label for='sex'>Sex</label>
-   <input name='sex' type="text"><br>
-   <label for='allergies'>Allergies </label>
-   <input name="allergies" type="text"><br>
- <label for='medHistory'>Medical History</label>
-   <input name="medHistory" type="text"><br> 
-  
-    <button name="addPersonButton">Add Person</button>
-  </form> <br>
-
- <form name="updateBm">
-    <input type="number" name="bmId">
-    <button name="update">Update BM by ID</button>
-  </form>
-  
-   <form name="deleteBm">
-    <input type="number" name="bmId">
-    <button name="deleteBtn">Delete BM by ID(CAUTION:this cannot be reversed!)</button>
-  </form>
-  
-   <form name="updatePerson">
-    <input type="number" name="personId">
-    <button name="updatePersonBtn">Update Person by ID</button>
-  </form>
-  
-   <form name="deletePerson">
-    <input type="number" name="personId">
-    <button name="deletePersonBtn">Delete Person by ID(CAUTION:this cannot be reversed!)</button>
-  </form>
+		</tbody>
+	</table>
+	<br>
 
 
- <div id="output">
-    <div id="BMData"></div>
-    <div id="PersonData"></div>
-    </div>
- <!-- JavaScript Bundle with Popper -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>   
+	<table class="table table-dark table-striped">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Date Of Birth</th>
+				<th>Sex</th>
+				<th>Allergies</th>
+				<th>Medical History</th>
+			</tr>
+		</thead>
+		<tbody id="personsTableBody">
+
+		</tbody>
+	</table>
+	<br>
+
+	<div class="row">
+		<div class="card border-black col-lg-4 mb-3" style="max-width: 25rem;">
+			<div class="card-body">
+				<h5 class="card-title">Add BM Record</h5>
+				<form name="addBm">
+					<div class="row">
+						<div class="col">
+							<input name="color" type="text" class="form-control"
+								placeholder="Color" aria-label="color">
+						</div>
+						<div class="col">
+							<input name="consistency" type="text" class="form-control"
+								placeholder="Consistency" aria-label="consistency">
+						</div>
+					</div>
+					<br>
+					<div class="row">
+						<div class="col">
+							<input name="date" type="text" class="form-control"
+								placeholder="Date" aria-label="date">
+						</div>
+					</div>
+					<br>
+					<div class="col">
+						<div class="col">
+							<input name="personId" type="text" class="form-control"
+								placeholder="Person ID" aria-label="date">
+						</div>
+					</div>
+					<br>
+					<div class="row">
+						<div class="col">
+							<button name="addBmButton" class="btn btn-primary">Add
+								BM to Record</button>
+						</div>
+					</div>
+					<br>
+				</form>
+			</div>
+		</div>
+
+		<div class="card border-black col-lg-4 mb-3" style="max-width: 28rem;">
+			<div class="card-body">
+				<h5 class="card-title">Add Person Record</h5>
+				<br>
+				<form name="addPerson">
+					<div class="row">
+						<div class="col">
+							<input name="dateOfBirth" type="text" class="form-control"
+								placeholder="Date of Birth" aria-label="dateOfBirth" />
+						</div>
+						<div class="col">
+							<input name="sex" type="text" class="form-control"
+								placeholder="Sex" aria-label="sex" />
+						</div>
+					</div>
+					<br>
+					<div class="row">
+						<div class="col">
+							<input name="allergies" type="text" class="form-control"
+								placeholder="Allergies" aria-label="allergies" />
+						</div>
+					</div>
+					<br>
+					<div class="row">
+						<div class="col">
+							<input name="medHistory" type="text" class="form-control"
+								placeholder="Medical History of Note" aria-label="medHistory" />
+						</div>
+					</div>
+					<br>
+					<div class="row">
+						<div class="col">
+							<button name="addPersonButton" class="btn btn-primary">
+								Add Person to Record</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+
+	<br>
+	<br>
+
+
+	<form name="updateBm">
+		<input type="number" name="bmId">
+		<button name="update">Update BM by ID</button>
+	</form>
+
+	<form name="deleteBm">
+		<input type="number" name="bmId">
+		<button name="deleteBtn">Delete BM by ID(CAUTION:this cannot
+			be reversed!)</button>
+	</form>
+	<br>
+	<br>
+	<form name="updatePerson">
+		<input type="number" name="personId">
+		<button name="updatePersonBtn">Update Person by ID</button>
+	</form>
+
+	<form name="deletePerson">
+		<input type="number" name="personId">
+		<button name="deletePersonBtn">Delete Person by
+			ID(CAUTION:this cannot be reversed!)</button>
+	</form>
+
+
+	<div id="output">
+		<div id="BMData"></div>
+		<div id="PersonData"></div>
+	</div>
+	<!-- JavaScript Bundle with Popper -->
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+		crossorigin="anonymous"></script>
 </body>
 
 </html>
