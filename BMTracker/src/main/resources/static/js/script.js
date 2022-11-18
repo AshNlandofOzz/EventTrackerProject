@@ -17,7 +17,7 @@ function init() {
 		};
 		addBm(bm);
 	})
-		document.addPerson.addPersonButton.addEventListener('click', function(e) {
+	document.addPerson.addPersonButton.addEventListener('click', function(e) {
 		e.preventDefault();
 
 		let person = {
@@ -29,22 +29,22 @@ function init() {
 		};
 		addperson(person);
 	})
-	
+
 	document.deleteBm.deleteBtn.addEventListener('click', function(e) {
 		e.preventDefault();
 		deleteBm(document.deleteBm.bmId.value);
 	})
-	
-		document.deletePerson.deletePersonBtn.addEventListener('click', function(e) {
+
+	document.deletePerson.deletePersonBtn.addEventListener('click', function(e) {
 		e.preventDefault();
 		deletePerson(document.deletePerson.personId.value);
 	})
-	
+
 	document.updateBm.update.addEventListener('click', function(e) {
 		e.preventDefault();
 		updateBm(document.updateBm.bmId.value);
 	})
-		document.updatePerson.updatePersonBtn.addEventListener('click', function(e) {
+	document.updatePerson.updatePersonBtn.addEventListener('click', function(e) {
 		e.preventDefault();
 		updatePerson(document.updatePerson.personId.value);
 	})
@@ -103,21 +103,17 @@ function displayBMs(bms) {
 			td = document.createElement('td');
 			td.textContent = bm.person.id;
 			tr.appendChild(td);
-
 		}
-			let totalBM = 0;
-			for(bm of bms) {
-				totalBM ++;		
-			}
-						tr = document.createElement('tr');
-			tbody.appendChild(tr);
-			td = document.createElement('td');
-			td.textContent = "Total BMs in Record: " + totalBM; 
-			tr.appendChild(td);
+		let totalBM = 0;
+		for (bm of bms) {
+			totalBM++;
+		}
+		tr = document.createElement('tr');
+		tbody.appendChild(tr);
+		td = document.createElement('td');
+		td.textContent = "Total BMs in Record: " + totalBM;
+		tr.appendChild(td);
 	}
-	//TODO XHR to get all the current data
-
-
 }
 
 
@@ -202,7 +198,7 @@ function deleteBm(bmId) {
 		}
 	}
 	xhr.send();
-};
+}
 
 function deletePerson(personId) {
 	let xhr = new XMLHttpRequest();
@@ -217,19 +213,19 @@ function deletePerson(personId) {
 		}
 	}
 	xhr.send();
-};
+}
 
 
 function updateBm(bmId) {
 	let xhr = new XMLHttpRequest();
-	xhr.open('GET', '/api/bms/' + bmId);
+	xhr.open('GET', 'api/bms/' + bmId);
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState === 4) {
 			if (xhr.status === 200) {
 				let bmJson = xhr.responseText;
 				console.log(bmJson);  //TESTING 
 				let bm = JSON.parse(bmJson);
-				
+
 				let BMData = document.getElementById('BMData');
 				let form = document.createElement('form');
 				form.name = 'updateBMform';
@@ -287,7 +283,7 @@ function updatePerson(personId) {
 				let personJson = xhr.responseText;
 				console.log(personJson);  //TESTING 
 				let person = JSON.parse(personJson);
-				
+
 				let PersonData = document.getElementById('PersonData');
 				let form = document.createElement('form');
 				form.name = 'updatePersonform';

@@ -91,14 +91,14 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `BMtrackerdb`;
-INSERT INTO `bowel_movement` (`id`, `color`, `consistency`, `person_id`, `date`) VALUES (1, 'dark brown', 'firm', 1, '10-21-2022');
-INSERT INTO `bowel_movement` (`id`, `color`, `consistency`, `person_id`, `date`) VALUES (2, 'healthy', NULL, 1, '10-23-2022');
-INSERT INTO `bowel_movement` (`id`, `color`, `consistency`, `person_id`, `date`) VALUES (3, 'healthy', NULL, 1, '10-24-2022');
-INSERT INTO `bowel_movement` (`id`, `color`, `consistency`, `person_id`, `date`) VALUES (4, 'light brown', 'runny', 1, '10-24-2022');
-INSERT INTO `bowel_movement` (`id`, `color`, `consistency`, `person_id`, `date`) VALUES (5, NULL, NULL, 2, '11/01/2022');
-INSERT INTO `bowel_movement` (`id`, `color`, `consistency`, `person_id`, `date`) VALUES (6, NULL, NULL, 2, '11/05/2022');
-INSERT INTO `bowel_movement` (`id`, `color`, `consistency`, `person_id`, `date`) VALUES (7, NULL, NULL, 3, '11/07/2022');
-INSERT INTO `bowel_movement` (`id`, `color`, `consistency`, `person_id`, `date`) VALUES (8, NULL, NULL, 3, '11/09/2022');
+INSERT INTO `bowel_movement` (`id`, `color`, `consistency`, `person_id`, `date`) VALUES (1, 'dark brown', 'firm', 1, '10-27-2019');
+INSERT INTO `bowel_movement` (`id`, `color`, `consistency`, `person_id`, `date`) VALUES (2, 'healthy', NULL, 1, '10-30-2019');
+INSERT INTO `bowel_movement` (`id`, `color`, `consistency`, `person_id`, `date`) VALUES (3, 'healthy', NULL, 1, '10-31-2019');
+INSERT INTO `bowel_movement` (`id`, `color`, `consistency`, `person_id`, `date`) VALUES (4, 'light brown', 'runny', 1, '11-02-2019');
+INSERT INTO `bowel_movement` (`id`, `color`, `consistency`, `person_id`, `date`) VALUES (5, NULL, NULL, 2, '07-07-2018');
+INSERT INTO `bowel_movement` (`id`, `color`, `consistency`, `person_id`, `date`) VALUES (6, NULL, NULL, 2, '07-20-2018');
+INSERT INTO `bowel_movement` (`id`, `color`, `consistency`, `person_id`, `date`) VALUES (7, NULL, NULL, 3, '07-25-2018');
+INSERT INTO `bowel_movement` (`id`, `color`, `consistency`, `person_id`, `date`) VALUES (8, NULL, NULL, 3, '07-30-2018');
 
 COMMIT;
 
