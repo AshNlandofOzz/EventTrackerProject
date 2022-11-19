@@ -35,7 +35,9 @@ export class PeopleService {
   }
 
 create(person: People): Observable<People> {
-  return this.http.post<People>(this.url, person).pipe(
+  console.log(person);
+console.log(this.url);
+  return this.http.post<People>(this.url + "/person", person).pipe(
     catchError((err: any) => {
       console.error(err);
       return throwError(
@@ -44,6 +46,7 @@ create(person: People): Observable<People> {
     })
   );
   }
+
 update(id: number, person: People): Observable<People> {
   return this.http.put<People>(this.url + '/' + id, person).pipe(
     catchError((err:any)=>{
@@ -55,7 +58,7 @@ update(id: number, person: People): Observable<People> {
   );
   }
 
-destroy(todoId: number): Observable<void> {
-  return this.http.delete<void>(this.url +'/'+ todoId,).pipe();
+destroy(peopleId: number): Observable<void> {
+  return this.http.delete<void>(this.url +'/'+ peopleId,).pipe();
 }
 }

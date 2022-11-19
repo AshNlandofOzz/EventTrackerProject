@@ -34,15 +34,16 @@ export class BMService {
   }
 
 create(bm: BM): Observable<BM> {
-  return this.http.post<BM>(this.url, bm).pipe(
+  return this.http.post<BM>(this.url + "/bm",  bm).pipe(
     catchError((err: any) => {
       console.error(err);
       return throwError(
-         () => new Error( 'person.create(): error creating Person: ' + err )
+         () => new Error( 'bm.create(): error creating BM: ' + err )
       );
     })
   );
   }
+
 update(id: number, bm: BM): Observable<BM> {
   return this.http.put<BM>(this.url + '/' + id, bm).pipe(
     catchError((err:any)=>{

@@ -7,7 +7,9 @@
       <th>Date</th>
       <th>Color</th>
       <th>Consistency</th>
-
+      <th>ID of Person</th>
+      <th>Edit?</th>
+      <th>Delete?:CAUTION CANNOT UNDO THIS</th>
     </tr>
   </thead>
   <tbody >
@@ -16,7 +18,37 @@
     <td>{{ bm.date }}</td>
     <td>{{ bm.color }}</td>
     <td>{{ bm.consistency }}</td>
+    <td>{{ bm.person.id }}</td>
+    <td>  <button class="btn btn-success" (click)="setEditBm(bm)">Edit</button></td>
+    <td><button class="btn btn-danger" (click)="deleteBm(bm.id)">Delete</button></td>
   </tr>
   </tbody>
 </table>
 <br>
+<form>
+  <div class="row" *ngIf="editBm">
+    <div class="col-auto">
+    <input class="form-control" type="text" name="color" placeholder="color" [(ngModel)]="editBm.color" />
+  </div>
+  <div class="col-auto">
+    <input class="form-control" type="text" name="consistency" placeholder="Consistency" [(ngModel)]="editBm.consistency" />
+  </div>
+  <div class="col-auto">
+    <input class="form-control" type="text" name="date" placeholder="Date" [(ngModel)]="editBm.date" />
+  </div>
+    <div class="col-auto">
+    <input class="form-control" type="text" name="personId" placeholder="ID of Person" [(ngModel)]="editBm.person.id" />
+  </div>
+    <!-- <input type="text" name="editTodo.completed" ngModel /> -->
+    <button (click)="editBm = null">Cancel</button>
+    <button (click)="updateBm(editBm.id, editBm)">Save</button>
+  </div>
+  </form>
+<br>
+<form>
+  <input type="text" name="color" placeholder="Color" [(ngModel)]="newBm.color" />
+  <input type="text" name="consistency" placeholder="Consistency" [(ngModel)]="newBm.consistency" />
+  <input type="text" name="date" placeholder="Date" [(ngModel)]="newBm.date" />
+  <input type="text" name="person" placeholder="Person ID" [(ngModel)]="newBm.person.id" />
+  <button class="btn-primary" (click)="addBM(newBm)">Add BM Record</button>
+</form>

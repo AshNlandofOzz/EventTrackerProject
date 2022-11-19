@@ -34,4 +34,50 @@ export class BMListComponent implements OnInit {
       },
     });
   }
+
+  addBM(bm: BM) {
+    this.bmService.create(this.newBm).subscribe({
+      next: (bm) => {
+        this.reload();
+        this.newBm = new BM();
+      },
+      error: (fail) => {
+        console.error('BMListComponent.addBm(): error creating bm record:');
+        console.error(fail);
+      },
+    });
+    this.reload();
+  }
+
+  deleteBm(bmId: number) {
+    this.bmService.destroy(bmId).subscribe({
+      next: (person) => {
+        this.reload();
+      },
+      error: (fail) => {
+        console.error('BMListComponent.deleteBm(): error loading bm record:');
+        console.error(fail);
+      },
+    });
+  }
+
+  setEditBm(bm: BM) {
+    this.editBm = Object.assign({}, bm);
+  }
+
+  updateBm(id: number, bm: BM) {
+    this.bmService.update(id, bm).subscribe({
+      next: (data) => {
+        this.reload();
+        this.selected = bm;
+        this.editBm = null;
+      },
+      error: (fail) => {
+        console.error(
+          'BMListHttpComponent.updateBm(): error updating bm record:'
+        );
+        console.error(fail);
+      },
+    });
+}
 }

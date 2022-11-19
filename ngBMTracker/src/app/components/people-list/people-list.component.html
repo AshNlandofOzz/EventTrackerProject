@@ -6,7 +6,8 @@
       <th>Sex</th>
       <th>Allergies</th>
       <th>Medical History</th>
-
+      <th>Edit?</th>
+      <th>Delete:CANNOT BE UNDONE</th>
     </tr>
   </thead>
   <tbody >
@@ -16,7 +17,38 @@
     <td>{{ people.sex }}</td>
     <td>{{ people.allergies }}</td>
     <td>{{ people.medHistory }}</td>
+    <td>  <button class="btn btn-success" (click)="setEditPeople(people)">Edit</button></td>
+    <td><button class="btn btn-danger" (click)="deletePerson(people.id)">Delete</button></td>
   </tr>
   </tbody>
 </table>
 <br>
+
+<form>
+<div class="row" *ngIf="editPerson">
+  <div class="col-auto">
+  <input class="form-control" type="text" name="sex" placeholder="sex" [(ngModel)]="editPerson.sex" />
+</div>
+<div class="col-auto">
+  <input class="form-control" type="text" name="dateOfBirth" placeholder="Date of Birth" [(ngModel)]="editPerson.dateOfBirth" />
+</div>
+<div class="col-auto">
+  <input class="form-control" type="text" name="allergies" placeholder="Allergies" [(ngModel)]="editPerson.allergies" />
+</div>
+  <div class="col-auto">
+  <input class="form-control" type="text" name="medHistory" placeholder="Med History" [(ngModel)]="editPerson.medHistory" />
+</div>
+  <!-- <input type="text" name="editTodo.completed" ngModel /> -->
+  <button (click)="editPerson = null">Cancel</button>
+  <button (click)="updatePerson(editPerson.id, editPerson)">Save</button>
+</div>
+</form>
+<br>
+<br>
+<form>
+  <input type="text" name="sex" placeholder="sex" [(ngModel)]="newPerson.sex" />
+  <input type="text" name="dateOfBirth" placeholder="Date Of Birth" [(ngModel)]="newPerson.dateOfBirth" />
+  <input type="text" name="medHistory" placeholder="medHistory" [(ngModel)]="newPerson.medHistory" />
+  <input type="text" name="allergies" placeholder="allergies" [(ngModel)]="newPerson.allergies" />
+  <button class="btn-primary" (click)="addPerson(newPerson)">Add Person</button>
+</form>

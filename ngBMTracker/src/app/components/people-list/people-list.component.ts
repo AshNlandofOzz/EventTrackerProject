@@ -34,4 +34,52 @@ export class PeopleListComponent implements OnInit {
     });
   }
 
+  addPerson(person: People) {
+    this.peopleService.create(this.newPerson).subscribe({
+      next: (person) => {
+        this.reload();
+        this.newPerson = new People();
+      },
+      error: (fail) => {
+        console.error('PeopleListComponent.addPerson(): error creating person:');
+        console.error(fail);
+      },
+    });
+    this.reload();
+  }
+
+  deletePerson(personId: number) {
+    this.peopleService.destroy(personId).subscribe({
+      next: (person) => {
+        this.reload();
+      },
+      error: (fail) => {
+        console.error('PeopleListComponent.deletePerson(): error loading person:');
+        console.error(fail);
+      },
+    });
+  }
+
+  setEditPeople(person: People) {
+    this.editPerson = Object.assign({}, person);
+  }
+
+  updatePerson(id: number, person: People) {
+
+    console.log(id);
+    console.log(person);
+    this.peopleService.update(id, person).subscribe({
+      next: (persons) => {
+        this.reload();
+        this.selected = person;
+        this.editPerson = null;
+      },
+      error: (fail) => {
+        console.error(
+          'PeopleListHttpComponent.updatePerson(): error updating person:'
+        );
+        console.error(fail);
+      },
+    });
+}
 }
