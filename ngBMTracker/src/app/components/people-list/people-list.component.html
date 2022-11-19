@@ -1,1 +1,22 @@
-<p>people-list works!</p>
+<table class="table table-dark table-striped">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Date Of Birth</th>
+      <th>Sex</th>
+      <th>Allergies</th>
+      <th>Medical History</th>
+
+    </tr>
+  </thead>
+  <tbody >
+    <tr *ngFor="let people of peoples">
+    <td>{{ people.id }}</td>
+    <td>{{ people.dateOfBirth }}</td>
+    <td>{{ people.sex }}</td>
+    <td>{{ people.allergies }}</td>
+    <td>{{ people.medHistory }}</td>
+  </tr>
+  </tbody>
+</table>
+<br>

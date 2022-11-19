@@ -1,1 +1,22 @@
-<p>bm-list works!</p>
+<h1>Welcome to BM Tracker! S*** Happens! </h1>
+
+<table class="table table-dark table-striped">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Date</th>
+      <th>Color</th>
+      <th>Consistency</th>
+
+    </tr>
+  </thead>
+  <tbody >
+    <tr *ngFor="let bm of bms">
+    <td>{{ bm.id }}</td>
+    <td>{{ bm.date }}</td>
+    <td>{{ bm.color }}</td>
+    <td>{{ bm.consistency }}</td>
+  </tr>
+  </tbody>
+</table>
+<br>

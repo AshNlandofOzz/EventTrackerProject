@@ -1,1 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.css";
+h1  {
+ text-align: center;
+ color: white;
+}
+
+body {
+  padding: 40px;
+  background: linear-gradient(.50turn, rgb(25, 10, 84), maroon);
+}
